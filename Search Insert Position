@@ -1,0 +1,38 @@
+Question : Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+You must write an algorithm with O(log n) runtime complexity.
+
+Code:
+
+int searchInsert(int* nums, int numsSize, int target){
+
+    int max = numsSize-1;
+    int min = 0;
+    int key=0;
+    while(min<=max)
+    {
+        key = (min + max)/2;
+        if(nums[key] == target)
+        {
+            
+            return key;
+        }
+        else if(nums[key] < target)
+        {
+            min = key+1;
+        }
+        else
+        {
+            max=key-1;
+        }
+        
+    }
+    
+        if(target > nums[key])
+            return (key+1);
+        else
+        {
+        
+            return key;
+        }
+}
