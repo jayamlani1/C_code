@@ -1,0 +1,51 @@
+Question:
+Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+
+Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
+
+The tests are generated such that there is exactly one solution. You may not use the same element twice.
+
+Code:
+/*
+ * The code is simple, we go through the loop sequentially once and for every element we find a semi-target, which is target- element's value.
+ * Because the array is sorted we are sure to find the element only after this particular element and also we can deploy binary search.
+ * If the second element is found, exit both the loops.
+ */
+
+int* twoSum(int* numbers, int numbersSize, int target, int* returnSize){
+int i=0,j=0,min,max,key,found =0;
+    int semitarget;
+    int *index = (int*) malloc(sizeof(int)*2);
+    *returnSize = 2;
+    for(i=0;i<numbersSize;i++)
+    {
+        semitarget = target - numbers[i];
+        min = i+1;
+        max = numbersSize-1;
+        key = (min + max)/2;
+        while(min<=max)
+        {
+            if(numbers[key] == semitarget)
+            {
+                found = 1;
+                break;
+            }
+            else if(numbers[key]<semitarget)
+            {
+                min = key + 1;
+            }
+            else if(numbers[key]>semitarget)
+            {
+                max=key-1;
+            }
+            key=(min+max)/2;
+        }
+        if(found == 1)
+        {
+            index[0] = i+1;
+            index[1] = key+1;
+            break;
+        }
+    }
+    return index;
+}
