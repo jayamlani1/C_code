@@ -1,0 +1,33 @@
+Question:
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+Note that you must do this in-place without making a copy of the array.
+
+Code:
+
+
+void moveZeroes(int* nums, int numsSize){
+
+    int i=0,j=0;
+    /* The algo is simple, look for zero, as soon as you find zero, start looking for non-zero and now
+     * replace the non-zero with the zero. Move ahead look for next zero and if found look for next 
+     * non-zero.
+     * There will be some repetition in the end. But I can't think of better idea in short term.
+     */
+    for(i=0;i< numsSize;i++)
+    {
+        if(nums[i]==0)
+        {
+            for(j=i+1;j<numsSize;j++)
+            {
+                if(nums[j]!=0)
+                {
+                    
+                    nums[i]=nums[j];
+                    nums[j]=0;
+                    break;
+                }
+            }
+        }
+    }
+}
