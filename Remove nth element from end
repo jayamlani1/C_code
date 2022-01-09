@@ -1,0 +1,50 @@
+Question:
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+
+Code:
+* struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n){
+
+    struct ListNode *counter=(struct ListNode*)malloc(sizeof(struct ListNode));
+    counter = head;
+    int i=0,j=0;
+    // i has the total length of the linked list.
+    while(counter!=NULL)
+    {
+        i++;
+        counter=counter->next;
+    }
+    printf("%d",i);
+    counter = head;
+     j=i-n;
+     //if the element to be deleted is the head of the link list, directly send head's next element.
+    if(j==0)
+    {
+            return head->next;
+    }
+    // if any element apart from head has to be removed cycle through the list again and skip the element by storing the next->next in next.
+    j=0;
+    while(counter!=NULL)
+    {
+       j++;
+        if(j==(i-n))
+        {
+            // This condition is to just make sure that there is a next->next element. Else just store NULL in the next element.
+            if(counter->next->next)
+            counter->next=counter->next->next;
+            else
+                counter->next=NULL;
+         // if the element to be deleted is removed just break from the loop.
+         break;
+        }
+        counter = counter->next;
+    }
+    return head;
+}
