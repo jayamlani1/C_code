@@ -1,0 +1,23 @@
+Question :
+Given the head of a singly linked list, return the middle node of the linked list.
+
+If there are two middle nodes, return the second middle node.
+
+Code:
+struct ListNode* middleNode(struct ListNode* head){
+
+    struct ListNode *counter=(struct ListNode*)malloc(sizeof(struct ListNode));
+    counter = head;
+    int len=0;
+    while(counter->next != NULL)
+    {
+        len++;
+        counter = counter->next;
+    }
+    len++;
+    for(int i=0;i<len/2;i++)
+    {
+        head = head->next;
+    }
+    return head;
+}
