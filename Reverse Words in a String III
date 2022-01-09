@@ -1,0 +1,39 @@
+Question: Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+
+Explanation:
+This is in place reverse of words.
+For each word, i acts as pointer to last character of the word and k acts as pointer to first character of the word. counter variable runs till half of the word so that the
+characters can be interchanged.
+j variable acts as a counter for the entire string which also helps in determining the exact word we are supposed to be at.
+Code:
+char * reverseWords(char * s){
+int i=0,j=0,k=0,wordlen=0;
+    int counter=0;
+    char temp;
+    while(1)
+    {
+        wordlen=0;
+        while(s[j]!=' ' && s[j]!= '\0')
+        {
+            wordlen++;
+            i++;
+            j++;
+        }
+        i--;
+        //wordlen--;
+        for(counter=0; counter<(wordlen/2);counter++)
+        {
+            temp = s[k+counter];
+            s[k+counter]=s[i-counter];
+            s[i-counter]=temp;
+        }
+        if(s[j]=='\0')
+        {
+            break;
+        }
+        j++;
+        k=i=j;
+        
+    }
+    return s;
+}
