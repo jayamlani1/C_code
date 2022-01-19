@@ -1,0 +1,30 @@
+/* Brute Force Method. Two loops, First to find the starting point and second to find the end point.
+ * isum is global max and jsum is max for a particular starting point.
+ * There is one comparision outside the for loop, just in case the last element in itself is the max element.
+ */
+int maxSubArray(int* nums, int numsSize){
+    int isum = nums[0];
+    int jsum = nums[0];
+    for(int i=0;i<numsSize;i++)
+    {
+        
+        jsum = nums[i];
+        printf("Value of jsum %d \n", jsum);
+         if(isum<jsum)
+        {
+            isum = jsum;
+        }
+        for(int j=i+1;j<numsSize;j++)
+        {
+            jsum = jsum + nums[j];
+            if(isum < jsum)
+            {
+                isum = jsum;
+            }
+        }
+       
+        printf("Value of isum %d \n", isum);
+    }
+    
+    return isum;
+}
