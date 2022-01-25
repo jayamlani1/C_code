@@ -1,0 +1,30 @@
+Question : Given an integer x, return true if x is palindrome integer.
+
+An integer is a palindrome when it reads the same backward as forward.
+
+Answer:
+
+// First check if number is less than 0, after that store the digits in an array, as the integer length cannot go beyond ten digit, array cannot be more than 10 digit long.
+// Compare the digits to check if the number is palindrone.
+bool isPalindrome(int x){
+    int arr[11];
+    int count =0;
+    if(x<0)
+        return false;
+    
+    while(x>0)
+    {
+        arr[count]=x%10;
+        x=x/10;
+        count++;
+    }
+    
+    for(int i=0;i<count/2;i++)
+    {
+        if(arr[i]!=arr[(count-i)-1])
+            return false;
+    }
+    
+    return true;
+    
+}
