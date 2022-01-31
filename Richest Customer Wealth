@@ -1,0 +1,23 @@
+Description : You are given an m x n integer grid accounts where accounts[i][j] is the amount of money the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank. Return the wealth that the richest customer has.
+
+A customer's wealth is the amount of money they have in all their bank accounts. The richest customer is the customer that has the maximum wealth.
+
+Answer: 
+
+int maximumWealth(int** accounts, int accountsSize, int* accountsColSize){
+int max =0;
+    int total =0;
+    for(int i=0;i<accountsSize;i++)
+    {
+        total = 0;
+        for(int j=0;j<*accountsColSize;j++)
+        {
+            total = total + accounts[i][j];
+        }
+        if(max< total)
+        {
+            max = total;
+        }
+    }
+    return max;
+}
