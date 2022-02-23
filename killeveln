@@ -1,0 +1,49 @@
+/* Here we have to remove the second element in the array till we are left with only two.
+ */
+
+#include <stdio.h>
+
+void killhalf(int n, int arr[n])
+{
+        if(n==2)
+        {
+                printf("%d, %d\n", arr[0], arr[1]);
+                return;
+        }
+        int ne;
+        if(n%2==0)
+        {
+                //even cond
+                ne=n/2;
+        }
+        else
+        {
+                //odd cond.
+                ne=n/2+1;
+        }
+
+        int narr[ne];
+        int i=0;
+        int j=0;
+        for(i=0;i<n;)
+        {
+                // repetative setup
+                narr[j]=arr[i];
+                i=i+2;
+                j=j+1;
+        }
+        killhalf(ne, narr);
+}
+void main(int args, char *argv[])
+{
+        int n = atoi(argv[1]);
+        int arr[n];
+        int i=0;
+        // initial setup
+        for(i=0;i<n;i++)
+        {
+                arr[i]=i+1;
+        }
+        killhalf(n, arr);
+
+}
