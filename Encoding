@@ -1,0 +1,83 @@
+/* This is super cool code */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+
+void tobinary(char *inp, char *rep, int len)
+{
+        int i=0;
+
+        int j=0;
+        for(i=0;i<len;i++)
+        {
+                for(int k=6;k>=0;k--)
+                {
+                        char locl = inp[i];
+                        rep[j] = ( locl >> k ) & 1 ? '1' : '0';
+                        j++;
+                }
+        }
+
+        //printf("Value of the string is %s\n", rep);
+}
+
+int main()
+{
+    char MESSAGE[101];
+    scanf("%[^\n]", MESSAGE);
+    int len = strlen(MESSAGE);
+    char out[len*7];
+    tobinary(MESSAGE, out, len);
+       // printf("Value of the string is %s\n", out);
+        int binlen = len*7;
+        int i=0;
+        for(i=0;i<binlen;i++)
+        {
+                if(out[i]=='1')
+                {
+                        printf("0 0");
+                        int k=i+1;
+                        for(k=i+1; k<binlen;k++)
+                        {
+                                if(out[k]=='1')
+                                {
+                                        printf("0");
+                                        i++;
+                                }
+                                else
+                                {
+                                        printf(" ");
+                                        break;
+                                }
+                        }
+                }
+                else if(out[i]=='0')
+                {
+                        printf("00 0");
+                        int k=i+1;
+                        for(k=i+1; k< binlen;k++)
+                        {
+                                if(out[k]=='0')
+                                {
+                                        printf("0");
+                                        i++;
+                                }
+                                else
+                                {
+                                        printf(" ");
+                                        break;
+                                }
+                        }
+                }
+        }
+        printf("\n");
+    
+    return 0;
+}
