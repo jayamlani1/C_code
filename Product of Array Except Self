@@ -1,0 +1,29 @@
+/* You must write an algorithm that runs in O(n) time and without using the division operation.
+*/
+
+int* productExceptSelf(int* nums, int numsSize, int* returnSize){
+
+    int front[numsSize];
+    front[0]=1;
+    int back[numsSize];
+   
+     back[numsSize-1] = 1;
+    int j = numsSize -2;
+    for(int i=1;i<numsSize;i++)
+    {
+        // product of all the previous elements
+        front[i] = front[i-1] * nums[i-1];
+        // product of all the next elements
+        back[j]= back[j+1] * nums[j+1];
+        j--;
+    }
+ 
+    for(int i=0;i<numsSize;i++)
+    {
+        nums[i] = front[i] * back[i];
+    }
+    
+ 
+    *returnSize = numsSize;
+    return nums;
+}
